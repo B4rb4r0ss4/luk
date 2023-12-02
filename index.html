@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Website</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #matrix-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .matrix-character {
+            position: absolute;
+            color: #00ff00;
+            font-size: 20px;
+            animation: animateMatrix 10s linear infinite;
+        }
+
+        @keyframes animateMatrix {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+        .content2 {
+            text-align: left;
+        }
+        a {
+            text-decoration: none;
+            color: #ffff00;
+
+        }
+
+        h1, p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="matrix-container"></div>
+
+    <div class="content">
+        <h1>Łukasz Stodółka</h1>
+        <p>Welcome to the Matrix</p>
+        </br>
+        <div class="content2">
+            <a target="blank" href="https://www.youtube.com/watch?v=Ioj1dEwWH1o">Music</a>
+            <br>
+            <a target="blank" href="http://wmirepo.xyz/">Math stuff</a>
+            <br>
+            <a target="blank" href="http://compoasso.free.fr/primelistweb/page/prime/liste_online_en.php">1 000 000 000 000 Prime numbers</a>
+        </div>
+    </div>
+
+    <script>
+        const matrixContainer = document.getElementById('matrix-container');
+
+        function createMatrixCharacter() {
+            const character = document.createElement('span');
+            character.className = 'matrix-character';
+            character.textContent = String.fromCharCode(Math.floor(Math.random() * 94) + 33);
+            character.style.left = Math.random() * 100 + 'vw';
+            matrixContainer.appendChild(character);
+
+            setTimeout(() => {
+                character.remove();
+            }, 10000);
+        }
+
+        function generateMatrix() {
+            setInterval(createMatrixCharacter, 150);
+        }
+
+        generateMatrix();
+    </script>
+</body>
+</html>
+
